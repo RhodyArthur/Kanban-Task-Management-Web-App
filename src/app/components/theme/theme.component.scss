@@ -1,0 +1,70 @@
+@use '../../../styles/theme';
+@use '../../../styles/breakpoints';
+@import '../../../styles/mixin';
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+
+.theme-container {
+    @include flex-row(flex, center, center);
+    background-color: var(--body-bg);
+    width: pxToRem(235);
+    padding: 0.875rem;
+    border-radius: 6px;
+
+    .container {
+        @include flex-row(flex, space-between, center);
+        gap: 1rem;
+
+        .toggle-container {
+            @include flex-row(flex, center, center);
+
+            .toggle-checkbox {
+                display: none;
+            }
+
+            .toggle-label {
+                display: block;
+                width: 40px;
+                height: 20px;
+                background-color: $purple;
+                border-radius: 20px;
+                position: relative;
+                cursor: pointer;
+                transition: background-color 0.3s;
+
+                .toggle-slider {
+                    position: absolute;
+                    top: 2px;
+                    left: 2px;
+                    width: 16px;
+                    height: 16px;
+                    background-color: $white;
+                    border-radius: 50%;
+                    transition: transform 0.3s;
+                }
+            }
+
+            /* Change the background color and slider position when checked */
+            .toggle-checkbox:checked + .toggle-label {
+                background-color: $purple;
+            }
+
+            .toggle-checkbox:checked + .toggle-label .toggle-slider {
+                transform: translateX(20px);
+            }
+        }
+    }
+}
+
+.hide-sidebar {
+    display: none;
+}
+
+// media queries
+@include breakpoints.mq(tablet) {
+    .hide-sidebar {
+        display: block;
+        margin-top: 1rem;
+        color: $medium-gray;
+    }
+}
