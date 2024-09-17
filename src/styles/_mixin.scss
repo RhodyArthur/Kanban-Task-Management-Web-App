@@ -1,0 +1,11 @@
+@import './typography';
+
+@mixin button($background, $color, $hover) {
+    background-color: $background;
+    $color: $color;
+
+    &:hover {
+        background-color: $hover;
+        border-radius: 1.25rem;
+    }
+}
