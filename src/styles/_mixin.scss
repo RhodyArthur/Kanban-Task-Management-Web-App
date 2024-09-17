@@ -1,11 +1,24 @@
 @import './typography';
+@import './variables';
 
-@mixin button($background, $color, $hover) {
+@mixin button-styles($background, $color, $hover) {
     background-color: $background;
     $color: $color;
+    border-radius: 1.25rem;
+    border: 1px solid transparent;
+    outline: none;
 
     &:hover {
         background-color: $hover;
-        border-radius: 1.25rem;
     }
+
+    &:disabled {
+        background-color: $disabled-color;
+    }
+}
+
+@mixin flex-row($display, $content, $align) {
+    display: $display;
+    justify-content: $content;
+    align-items: $align;
 }

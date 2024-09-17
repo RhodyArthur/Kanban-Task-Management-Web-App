@@ -1,0 +1,18 @@
+// import partials
+@import './variables';
+
+// set theme for light mode
+$light-mode: (
+    "header-bg": $white,
+    "body-bg": $light-gray,
+    "text-clr": $black,
+    "bar": $light-lines
+);
+
+// set theme for dark mode
+$dark-mode: (
+    "header-bg": $dark-gray,
+    "body-bg": $very-dark-gray,
+    "text-clr": $light-gray,
+    "bar": $dark-lines
+);

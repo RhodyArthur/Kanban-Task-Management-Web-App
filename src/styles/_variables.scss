@@ -1,12 +1,20 @@
+@use 'sass:math';
+
 $purple: #635FC7;
 $purple-50: #A8A4FF;
-$dark: #000112;
-$dark-200: #20212C;
-$dark-100: #2B2C37;
-$dark-50: #3E3F4E;
-$gray: #828FA3;
-$gray-100: #E4EBFA;
-$gray-50: #F4F7FD;
+$black: #000112;
+$very-dark-gray: #20212C;
+$dark-gray: #2B2C37;
+$dark-lines: #3E3F4E;
+$medium-gray: #828FA3;
+$light-lines: #E4EBFA;
+$light-gray: #F4F7FD;
 $white: #FFFFFF;
 $red: #EA5555;
 $red-50: #FF9898;
+$disabled-color: #979797; 
+
+// convert px to rem
+@function pxToRem($value) {
+    @return math.div($value,16)+rem;
+}

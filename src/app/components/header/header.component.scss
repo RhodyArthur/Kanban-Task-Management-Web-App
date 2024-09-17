@@ -1,0 +1,99 @@
+@use '../../../styles/theme';
+@use '../../../styles/breakpoints';
+@import '../../../styles/mixin';
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+
+.header-container {
+    @include flex-row(flex, start, center);
+    gap: 1rem;
+    padding: 0 1rem;
+    background-color: var(--header-bg);
+    height: pxToRem(64);
+
+        .logo {
+
+            span {
+                display: none;
+            }
+        }
+
+    .container-1 {
+        @include flex-row(flex, space-between, center);
+        width: 100%;
+        
+        .board-name {
+            @extend .heading-l;
+        }
+
+        .container-2 {
+            @include flex-row(flex, space-between, center);
+            gap: 1rem;
+
+            button {
+                @include button-styles($purple, $white, $purple-50);
+                width: pxToRem(48);
+                height: pxToRem(32);
+    
+                span {
+                    display: none;
+                }
+            }
+        }
+
+    }
+
+}
+
+// media queries
+@include breakpoints.mq(tablet) {
+    .header-container {
+        height: pxToRem(80);
+
+            .logo {
+                @include flex-row(flex, flex-start, center); 
+                gap: 1rem;
+                width: pxToRem(260);
+                border-right: 2px solid var(--bar);
+                height: 100%;
+
+                span {
+                    display: inline;
+                    font-size: 1.5rem;
+                    font-weight: 800;
+                    line-height: 1.2;
+                    // @extend .heading-xl;
+                }
+
+        }
+
+        .container-1 {
+            .board-name {
+                
+                p {
+                    margin-top: .4rem;
+                    font-size: 1.25rem;
+
+                    svg {
+                        display: none;
+                    }
+                }
+            }
+
+            .container-2 {
+
+                button {
+                    @include flex-row(flex, center, center);
+                    gap: .5rem;
+                    width: pxToRem(164);
+                    height: pxToRem(48);
+                    span {
+                        display: block;
+                        color: $white;
+                    }
+                }
+            }
+
+        }
+    }
+}
