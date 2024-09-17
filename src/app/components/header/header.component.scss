@@ -6,22 +6,22 @@
 
 .header-container {
     @include flex-row(flex, start, center);
-    gap: 1rem;
-    padding: 0 1rem;
     background-color: var(--header-bg);
     height: pxToRem(64);
 
         .logo {
+            padding-left: 1rem;
 
             span {
                 display: none;
+
             }
         }
 
     .container-1 {
         @include flex-row(flex, space-between, center);
-        width: 100%;
-        
+        flex: 1; 
+        padding: 0 1rem;       
         .board-name {
             @extend .heading-l;
         }

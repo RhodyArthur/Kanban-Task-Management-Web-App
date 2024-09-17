@@ -1,0 +1,117 @@
+@use '../../../styles/theme';
+@use '../../../styles/breakpoints';
+@import '../../../styles/mixin';
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+
+.bg {
+    background-color: rgba(0 , 0, 0, 0.2);
+    height: calc(100vh - 64px);
+    padding-top: 1rem;
+
+    .sidebar-container {
+        background-color: var(--sidebar-bg);
+        width: pxToRem(264);
+        border-radius: 8px;
+        padding: 1rem 0;
+        margin: auto;
+
+        .boards-container {
+            @include flex-column;
+            width: pxToRem(240);
+            
+            p {
+                @extend .body-m;
+                padding-left: 1rem;
+                letter-spacing: 2.4px;
+                color: $medium-gray;
+            }
+
+
+            .boards {
+                @include flex-column;
+
+                a {
+                    @extend .body-m;
+                    padding: 1rem 0;
+                    padding-left: 1rem;
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                    color: $medium-gray;
+                    
+                    &:hover {
+                        background-color: $purple;
+                        color: $white;
+                        border-radius: 0 6.25rem  6.25rem 0;
+
+                        svg {
+                            fill: $white;
+                        }
+                    }
+
+                    svg {
+                        fill: $medium-gray;
+                    }
+
+                }
+
+                .btn {
+                    @extend a;
+                    color: $purple;
+
+                    svg {
+                        fill: $purple;
+                    }
+                    
+                    button {
+                        background-color: transparent;
+                        border: 1px solid transparent;
+                        color: $purple;
+
+                        
+                        &:hover {
+                            color: $white;
+                            
+                            svg {
+                                fill: $white;
+                            }
+                        }
+                  
+                    }
+                }
+            }
+        }
+
+        .theme-container {
+            padding-left: 1rem;
+        }
+    }
+}
+
+// media queries
+@include breakpoints.mq(tablet) {
+    .bg {
+        background-color: transparent;
+        width: pxToRem(260);
+        position: relative;
+
+        .sidebar-container {
+            @include flex-row(flex, space-between, null);
+            flex-direction: column;
+            width: pxToRem(260);
+            height: calc(100vh - 80px);
+            border-radius: 0px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-right: 2px solid var(--bar);
+
+
+            .boards-container {
+                width: pxToRem(240);
+            }
+        }
+    }
+}
