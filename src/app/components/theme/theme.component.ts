@@ -16,7 +16,6 @@ constructor(private themeService: ThemeService) {}
 
 ngOnInit() {
   this.themeService.loadThemeFromLocalStorage();   
-
 }
 
 setLightMode() {
