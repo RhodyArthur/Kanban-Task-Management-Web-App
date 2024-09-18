@@ -8,6 +8,7 @@
     @include flex-row(flex, start, center);
     background-color: var(--header-bg);
     height: pxToRem(64);
+    border-bottom: 2px solid var(--bar);
 
         .logo {
             padding-left: 1rem;
