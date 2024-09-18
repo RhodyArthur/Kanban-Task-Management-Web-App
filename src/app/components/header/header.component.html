@@ -7,7 +7,7 @@
     <div class="container-1">
         <div class="board-name">
             <p>Board name
-                <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+                <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg" (click)="displayMenu()">
                     <path stroke="#635FC7" stroke-width="2" fill="none" d="m1 1 4 4 4-4"/>
                 </svg>
             </p>
@@ -29,3 +29,7 @@
         </div>
     </div>
 </div>
+
+@if (showMenu) {
+    <app-mobile-menu/>
+}

@@ -17,10 +17,16 @@ import { BoardService } from '../../services/board.service';
 export class SidebarComponent {
 
   boards$!: Observable<Board[]>;
+  showSidebar: boolean = true;
+
   constructor(private boardService: BoardService) {}
 
   ngOnInit() {
    this.boards$ = this.boardService.boards$;
+  }
+
+  hideSidebar() {
+    this.showSidebar = !this.showSidebar;
   }
 
 }

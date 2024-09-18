@@ -8,7 +8,6 @@
     background-color: rgba(0 , 0, 0, 0.2);
     height: calc(100vh - 64px);
     padding-top: 1rem;
-    display: none;
 
     .sidebar-container {
         background-color: var(--sidebar-bg);
@@ -113,35 +112,6 @@
 // media queries
 @include breakpoints.mq(tablet) {
     .bg {
-        background-color: transparent;
-        width: pxToRem(260);
-        position: relative;
-        display: block;
-
-        .sidebar-container {
-            @include flex-row(flex, space-between, null);
-            flex-direction: column;
-            width: pxToRem(260);
-            height: calc(100vh - 80px);
-            border-radius: 0px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-right: 2px solid var(--bar);
-
-
-            .boards-container {
-                width: pxToRem(240);
-            }
-
-            .theme-container {
-                
-                .hide-sidebar {
-                    display: block;
-                    color: $medium-gray;
-                    padding-left: 1rem;
-                }
-            }
-        }
+        display: none;
     }
 }
