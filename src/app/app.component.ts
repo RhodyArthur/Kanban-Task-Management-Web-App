@@ -18,14 +18,11 @@ import { selectAllBoards, selectBoardState } from './state/board/board.selectors
 export class AppComponent {
   title = 'kanban-task-manager';
 
-  boards$!: Observable<Board[]>;
 
   constructor(private store: Store) {
-
   }
 
   ngOnInit(): void {
     this.store.dispatch(loadBoards());
-    this.boards$ = this.store.pipe(select(selectAllBoards));
   }
 }

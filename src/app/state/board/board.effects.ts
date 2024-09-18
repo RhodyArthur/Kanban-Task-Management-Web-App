@@ -20,10 +20,12 @@ export class BoardEffects {
             }
             else {
                 return this.apiService.getData().pipe(
-                    map(res =>res.map((board) => ({
+                    map(res =>res.boards.map((board) => ({
                         ...board,
-                        id: board.id || uuidv4()
+                        id: uuidv4()
+
                     }))),
+
                     tap((boards: Board[]) => {
                         localStorage.setItem('boards', JSON.stringify(boards))
                     }),
@@ -37,37 +39,7 @@ export class BoardEffects {
         })
     ))
 
-    // loadBoards$ = createEffect(() => 
-    //     this.actions$.pipe(
-    //         ofType(loadBoards),
-    //         mergeMap(() => {
-    //             const localStorageBoards = localStorage.getItem('boards');
     
-    //             if (localStorageBoards) {
-    //                 const boards: Board[] = JSON.parse(localStorageBoards);
-    //                 return of(loadBoardsSuccess({ boards }));
-    //             } else {
-    //                 return this.apiService.getData().pipe(
-    //                     map(res => Array.isArray(res) ? res : [res]), // Ensure res is an array
-    //                     map(res => res.map((board) => ({
-    //                         ...board,
-    //                         id: board.id || uuidv4()
-    //                     }))),
-    //                     tap((boards: Board[]) => {
-    //                         console.log('Loading from API');
-    //                         localStorage.setItem('boards', JSON.stringify(boards));
-    //                     }),
-    //                     map((boards: Board[]) => loadBoardsSuccess({ boards })),
-    //                     catchError((error) => {
-    //                         console.error('Error loading boards:', error);
-    //                         return of(loadBoardsFailure());
-    //                     })
-    //                 );
-    //             }
-    //         })
-    //     ));
-    
-
     constructor( private actions$: Actions,
                  private apiService: ApiService
     ){}

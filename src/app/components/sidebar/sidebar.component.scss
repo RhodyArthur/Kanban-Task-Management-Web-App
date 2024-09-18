@@ -85,10 +85,31 @@
         }
 
         .theme-container {
-            @include flex-row(flex,center,center);
+            @include flex-column;
+
+            .theme {
+
+                @include flex-row(flex,center,center);
+            }
+
+            .hide-sidebar {
+                display: none;
+            }
         }
     }
 }
+
+// .hide-sidebar {
+//     display: none;
+// }
+
+// // media queries
+// @include breakpoints.mq(tablet) {
+//     .hide-sidebar {
+//         display: block;
+//         color: $medium-gray;
+//     }
+// }
 
 // media queries
 @include breakpoints.mq(tablet) {
@@ -111,6 +132,15 @@
 
             .boards-container {
                 width: pxToRem(240);
+            }
+
+            .theme-container {
+                
+                .hide-sidebar {
+                    display: block;
+                    color: $medium-gray;
+                    padding-left: 1rem;
+                }
             }
         }
     }
