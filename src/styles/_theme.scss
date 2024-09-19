@@ -9,7 +9,8 @@ $light-mode: (
     "bar": $light-lines,
     "sidebar-bg": $white,
     "link-hover": $light-gray,
-    "new-column-bg": linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.50) 100%)
+    "new-column-bg": linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.50) 100%),
+    "dropdown": $white,
 );
 
 // set theme for dark mode
@@ -20,7 +21,8 @@ $dark-mode: (
     "bar": $dark-lines,
     "sidebar-bg": $dark-gray,
     "link-hover": $white,
-    "new-column-bg": linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.13) 100%)
+    "new-column-bg": linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.13) 100%),
+    "dropdown": $very-dark-gray,
     
 );
 

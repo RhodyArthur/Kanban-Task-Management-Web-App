@@ -1,6 +1,6 @@
-<div class="task-container">
+<div class="task-container" (click)="viewTaskDetails()">
     <div class="task">
         <h4 class="task-name">{{task.title}}</h4>
-        <p class="task-count">{{task.status.length}} of {{task.subtasks.length}} subtasks</p>
+        <p class="task-count">{{completedTasksCount}} of {{task.subtasks.length}} subtasks</p>
     </div>
 </div>

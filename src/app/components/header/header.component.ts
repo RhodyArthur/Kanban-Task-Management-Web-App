@@ -6,11 +6,12 @@ import { Board } from '../../models/board';
 import { boardState } from '../../state/board/board.entity';
 import { selectSelectedBoard } from '../../state/board/board.selectors';
 import { CommonModule } from '@angular/common';
+import { MenuComponent } from "../menu/menu.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MobileMenuComponent, CommonModule],
+  imports: [MobileMenuComponent, CommonModule, MenuComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

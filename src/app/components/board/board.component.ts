@@ -28,11 +28,6 @@ export class BoardComponent {
   this.selectedBoard$.subscribe(data => console.log(data))
 }
 
-// display task details
-viewTaskDetails() {
-  console.log('view details')
-}
-
 // add new column
 addNewColumn() {
   console.log('new column')
