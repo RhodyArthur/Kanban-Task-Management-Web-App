@@ -6,7 +6,8 @@
 
 .board-container {
     @include flex-row(flex, flex-start, start);
-    gap: 1rem;
+    gap: 1.5rem;
+
 
     .column {
         @include flex-column;
@@ -14,10 +15,37 @@
         margin-left: 1rem;
         width: pxToRem(280);
         flex-shrink: 0;
+    
 
         .column-name {
             color: $medium-gray;
             @extend .body-m;
+            letter-spacing: 2.4px;
+            text-transform: uppercase;
+        }
+    }
+
+    button {
+        width: pxToRem(280);
+        height: 100vh;
+        border: 1px solid #AFB6B9;
+        background-color: var(--new-column-bg);
+        flex-shrink: 0;
+        margin-top: 3.7rem;
+        border-radius: 6px;
+        color: $medium-gray;
+        cursor: pointer;
+        @extend .heading-xl;
+
+        svg {
+            fill: $medium-gray;
+        }
+
+        &:hover {
+            color: $purple;
+            svg {
+                fill: $purple;
+            }
         }
     }
 
@@ -38,6 +66,7 @@
        button {
         @include button-styles($purple, $white, $purple-50);
         padding: .967rem 1.62rem;
+        
        }
     }
 }

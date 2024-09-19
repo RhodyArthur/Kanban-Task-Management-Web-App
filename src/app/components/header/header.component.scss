@@ -23,8 +23,12 @@
         @include flex-row(flex, space-between, center);
         flex: 1; 
         padding: 0 1rem;       
+
         .board-name {
             @extend .heading-l;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
         }
 
         .container-2 {
@@ -75,9 +79,9 @@
                     margin-top: .4rem;
                     font-size: 1.25rem;
 
-                    svg {
-                        display: none;
-                    }
+                }
+                svg {
+                    display: none;
                 }
             }
 

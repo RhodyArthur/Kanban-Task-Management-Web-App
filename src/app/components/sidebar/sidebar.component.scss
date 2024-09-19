@@ -6,7 +6,7 @@
 
 .bg {
     background-color: rgba(0 , 0, 0, 0.2);
-    height: calc(100vh - 64px);
+    height: calc(100vh - 4rem);
     padding-top: 1rem;
     display: none;
 
@@ -44,13 +44,24 @@
                     gap: .5rem;
                     color: $medium-gray;
                     
-                    &:hover {
+                    &:active,
+                    &:focus {
                         background-color: $purple;
                         color: $white;
                         border-radius: 0 6.25rem  6.25rem 0;
 
                         svg {
                             fill: $white;
+                        }
+                    }
+
+                    &:hover {
+                        color: $purple;
+                        background-color: var(--link-hover);
+                        border-radius: 0 6.25rem  6.25rem 0;
+
+                        svg {
+                            fill: $purple;
                         }
                     }
 
@@ -74,13 +85,13 @@
                         color: $purple;
 
                         
-                        &:hover {
-                            color: $white;
+                        // &:hover {
+                        //     color: $white;
                             
-                            svg {
-                                fill: $white;
-                            }
-                        }
+                        //     svg {
+                        //         fill: $white;
+                        //     }
+                        // }
                   
                     }
                 }
@@ -108,8 +119,6 @@
     bottom: 5px;
     padding: .8rem 1.175rem;
     border-radius: 0 6.25rem 6.25rem 0;
-
-
 }
 
 // media queries
@@ -124,7 +133,7 @@
             @include flex-row(flex, space-between, null);
             flex-direction: column;
             width: pxToRem(260);
-            height: calc(100vh - 80px);
+            height: calc(100vh - 5rem);
             border-radius: 0px;
             position: absolute;
             top: 0;
@@ -141,7 +150,25 @@
                 .hide-sidebar {
                     display: block;
                     color: $medium-gray;
+                    padding: 1rem 0;
                     padding-left: 1rem;
+                    cursor: pointer;
+                    width: pxToRem(240);
+
+                    svg {
+                        fill: $medium-gray;
+                    }
+
+                    &:hover {
+                        color: $purple;
+                        background-color: var(--link-hover);
+                        border-radius: 0 6.25rem  6.25rem 0;
+
+                        svg {
+                            fill: $purple;
+                        }
+                    }
+                
                 }
             }
         }

@@ -4,11 +4,16 @@
 
     .main {
         display: flex;
+        height: calc(100vh - 80px);
 
         .content {
-            // border: 1px solid red;
             width: 100%;
+            flex-grow: 1;
             overflow: auto;
+            margin-right: 1rem;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+            height: 100%;
         }
     }
 }

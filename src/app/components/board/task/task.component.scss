@@ -11,18 +11,28 @@
     padding: 1.5rem 1rem;
     background-color: var(--sidebar-bg);
     box-shadow: 0 4px 6px 0 #364E7E;
+    cursor: pointer;
 
     .task {
         @include flex-column;
         gap: .5rem;
 
+        
         h4 {
             @extend .heading-m;
-        }
 
+        }
+        
         p{
             color: $medium-gray;
             @extend .body-m;
+        }
+    }
+
+    &:hover {
+        h4 {
+
+            color: $purple;
         }
     }
 }

@@ -6,10 +6,15 @@
 
 .bg {
     background-color: rgba(0 , 0, 0, 0.6);
-    height: calc(100vh - 64px);
+    // backdrop-filter: blur(6px);
+    height: calc(100vh - 4rem);
     padding-top: 1rem;
-    opacity: 0.5;
-    position: relative;
+    opacity: 0.7;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
 
 }
 .sidebar-container {
@@ -22,10 +27,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    // z-index: 1;
+    z-index: 11;
 
     .boards-container {
         @include flex-column;
+        gap: .5rem;
+        
         width: pxToRem(240);
         
         p {
@@ -38,6 +45,7 @@
 
         .boards {
             @include flex-column;
+            gap: 0px;
 
             a {
                 @extend .body-m;
@@ -49,15 +57,27 @@
                 gap: .5rem;
                 color: $medium-gray;
                 
-                &:hover {
-                    background-color: $purple;
-                    color: $white;
-                    border-radius: 0 6.25rem  6.25rem 0;
+                &:active,
+                    &:focus {
+                        background-color: $purple;
+                        color: $white;
+                        border-radius: 0 6.25rem  6.25rem 0;
 
-                    svg {
-                        fill: $white;
+                        svg {
+                            fill: $white;
+                        }
                     }
-                }
+
+                    &:hover {
+                        color: $purple;
+                        background-color: var(--link-hover);
+                        border-radius: 0 6.25rem  6.25rem 0;
+
+                        svg {
+                            fill: $purple;
+                        }
+                    }
+
 
                 svg {
                     fill: $medium-gray;
@@ -79,13 +99,13 @@
                     color: $purple;
 
                     
-                    &:hover {
-                        color: $white;
+                    // &:hover {
+                    //     color: $white;
                         
-                        svg {
-                            fill: $white;
-                        }
-                    }
+                    //     svg {
+                    //         fill: $white;
+                    //     }
+                    // }
               
                 }
             }
