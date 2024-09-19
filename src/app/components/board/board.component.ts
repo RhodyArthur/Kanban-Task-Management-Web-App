@@ -25,7 +25,6 @@ export class BoardComponent {
   
   ngOnInit() {
   this.selectedBoard$ = this.store.select(selectSelectedBoard);
-  this.selectedBoard$.subscribe(data => console.log(data))
 }
 
 // add new column

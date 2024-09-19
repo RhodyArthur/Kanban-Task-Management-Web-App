@@ -29,5 +29,12 @@ export class HeaderComponent {
     this.showMenu = !this.showMenu;
   }
 
+  editBoard() {
+    console.log('display edit board')
+  }
+
+  deleteBoard() {
+    console.log('display delete modal')
+  }
 
 }

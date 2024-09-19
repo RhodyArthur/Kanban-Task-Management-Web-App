@@ -4,3 +4,7 @@
         <p class="task-count">{{completedTasksCount}} of {{task.subtasks.length}} subtasks</p>
     </div>
 </div>
+
+@if (showModal) {
+    <app-task-details/>
+}

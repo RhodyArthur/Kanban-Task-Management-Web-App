@@ -10,8 +10,8 @@
     <!-- drop-down -->
     @if (showDropDown) {
          <div class="dropdown-menu">
-            <p class="edit">Edit</p>
-            <p class="delete">Delete</p>
+            <p class="edit" (click)="onEditClick()">Edit</p>
+            <p class="delete" (click)="onDeleteClick()">Delete</p>
          </div>
     }
 </div>
