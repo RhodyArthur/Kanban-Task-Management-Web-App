@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { ThemeComponent } from "../theme/theme.component";
 import {  Observable } from 'rxjs';
 import { Board } from '../../models/board';
-import { loadBoards } from '../../state/board/board.actions';
-import { selectAllBoards } from '../../state/board/board.selectors';
+import { loadBoards, setSelectedBoard } from '../../state/board/board.actions';
+import { selectAllBoards, selectSelectedBoard } from '../../state/board/board.selectors';
 import { CommonModule } from '@angular/common';
 import { BoardService } from '../../services/board.service';
+import { Store } from '@ngrx/store';
+import { boardState } from '../../state/board/board.entity';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,7 +21,8 @@ export class SidebarComponent {
   boards$!: Observable<Board[]>;
   showSidebar: boolean = true;
 
-  constructor(private boardService: BoardService) {}
+  constructor(private boardService: BoardService,
+              private store: Store<boardState>) {}
 
   ngOnInit() {
    this.boards$ = this.boardService.boards$;
@@ -27,6 +30,12 @@ export class SidebarComponent {
 
   hideSidebar() {
     this.showSidebar = !this.showSidebar;
+  }
+
+  selectedBoard$ = this.store.select(selectSelectedBoard);
+
+  onBoardSelect(board: Board) {
+    this.store.dispatch(setSelectedBoard({ board }));
   }
 
 }

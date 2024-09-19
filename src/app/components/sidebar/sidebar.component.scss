@@ -19,6 +19,7 @@
 
         .boards-container {
             @include flex-column;
+            gap: .5rem;
             width: pxToRem(240);
             
             p {
@@ -31,6 +32,7 @@
 
             .boards {
                 @include flex-column;
+                gap: 0px;
 
                 a {
                     @extend .body-m;

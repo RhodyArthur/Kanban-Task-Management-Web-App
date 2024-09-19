@@ -20,3 +20,7 @@ export const updateBoard = createAction('[Board] Update Board',
 export const deleteBoard = createAction('[Board] Delete Board',
     props<{id: string}>()
 );
+
+export const setSelectedBoard = createAction('[Board] Set Selected Board',
+    props<{board: Board}>()
+);

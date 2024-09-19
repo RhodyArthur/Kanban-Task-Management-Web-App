@@ -1,0 +1,28 @@
+@use '../../../../styles/theme';
+@import '../../../../styles/breakpoints';
+@import '../../../../styles/mixin';
+@import '../../../../styles/variables';
+@import '../../../../styles/typography';
+
+.task-container {
+    width: pxToRem(280);
+    // height: pxToRem(88);
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    background-color: var(--sidebar-bg);
+    box-shadow: 0 4px 6px 0 #364E7E;
+
+    .task {
+        @include flex-column;
+        gap: .5rem;
+
+        h4 {
+            @extend .heading-m;
+        }
+
+        p{
+            color: $medium-gray;
+            @extend .body-m;
+        }
+    }
+}

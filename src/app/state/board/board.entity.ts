@@ -4,6 +4,8 @@ import { Board } from "../../models/board";
 // define state
 export interface boardState extends EntityState<Board> {
     loading: boolean,
+    selectedBoardId: string,
+    selectedBoard: Board | null
 }
 
 // create adapter
@@ -17,4 +19,6 @@ export const boardAdaptor: EntityAdapter<Board> = createEntityAdapter<Board>(
 // define initial state
 export const initialBoardState: boardState = boardAdaptor.getInitialState({
     loading: false,
+    selectedBoardId: '',
+    selectedBoard : null
 });
