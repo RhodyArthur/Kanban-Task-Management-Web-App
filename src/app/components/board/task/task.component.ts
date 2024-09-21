@@ -24,7 +24,6 @@ export class TaskComponent implements OnChanges{
   // display task details
   viewTaskDetails() {
     this.showModal = !this.showModal;
-    console.log('view details');
   }
   
 }

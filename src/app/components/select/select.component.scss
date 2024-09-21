@@ -1,0 +1,58 @@
+@use '../../../styles/theme';
+@import '../../../styles/breakpoints';
+@import '../../../styles/mixin';
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+
+.select-container {
+    @include flex-row(flex, space-between, center);
+    border: 1px solid $disabled-color;
+    border-radius: 4px;
+
+    &:hover,
+    &:active {
+        border: 1px solid $purple;
+    }
+
+    .custom-select {
+        appearance: none;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        background-color: transparent;
+        color: var(--text-clr);
+
+        &::after {
+            content: url('../../../assets/icon-chevron-down.svg'); 
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        option {
+          background-color: var(--dropdown); 
+          color: $medium-gray;
+          border-radius: 8px;
+          width: 20rem;
+          @extend .body-l;
+
+          &:active,
+          &:focus,
+          &:hover {
+            background-color: transparent;
+            color: $red;
+          }
+
+        }
+
+       
+
+        &:focus {
+            outline: none;
+        }
+
+    }
+    
+}

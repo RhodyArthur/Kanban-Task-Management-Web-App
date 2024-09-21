@@ -11,6 +11,8 @@ $light-mode: (
     "link-hover": $light-gray,
     "new-column-bg": linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.50) 100%),
     "dropdown": $white,
+    "subtask": $light-gray,
+    "text": $medium-gray
 );
 
 // set theme for dark mode
@@ -23,6 +25,8 @@ $dark-mode: (
     "link-hover": $white,
     "new-column-bg": linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.13) 100%),
     "dropdown": $very-dark-gray,
+    "subtask": $very-dark-gray,
+    "text": $medium-gray
     
 );
 

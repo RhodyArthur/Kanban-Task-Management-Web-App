@@ -21,10 +21,12 @@ export class BoardComponent {
 
   selectedBoard$!: Observable<Board | null | undefined>;
 
-  constructor(private store: Store<boardState>) {}
+  constructor(private store: Store<boardState>,
+  ) {}
   
   ngOnInit() {
   this.selectedBoard$ = this.store.select(selectSelectedBoard);
+
 }
 
 // add new column

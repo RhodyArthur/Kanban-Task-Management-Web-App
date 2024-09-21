@@ -1,0 +1,13 @@
+    <div class="select-container">
+        <!-- select status or column -->
+        <select name="status" id="status" class="custom-select">
+            @for (item of statuses; track $index) {
+                <option value="{{item}}" class="custom-option">{{item}}</option>
+            }
+        </select>
+
+        <!-- arrow down -->
+        <!-- <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+            <path stroke="#635FC7" stroke-width="2" fill="none" d="m1 1 4 4 4-4"/>
+        </svg> -->
+    </div>

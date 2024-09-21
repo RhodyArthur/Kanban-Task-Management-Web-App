@@ -35,7 +35,7 @@ export class SidebarComponent {
   selectedBoard$ = this.store.select(selectSelectedBoard);
 
   onBoardSelect(board: Board) {
-    this.store.dispatch(setSelectedBoard({ board }));
+    this.boardService.saveSelectedBoard(board);
   }
 
 }
