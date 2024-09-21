@@ -37,4 +37,8 @@ export class HeaderComponent {
     console.log('display delete modal')
   }
 
+  hideMenu() {
+    this.showMenu = false;
+  }
+
 }

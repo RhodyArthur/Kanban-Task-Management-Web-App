@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ThemeComponent } from '../theme/theme.component';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -18,6 +18,7 @@ import { selectSelectedBoard } from '../../state/board/board.selectors';
 export class MobileMenuComponent {
 
   boards$!: Observable<Board[]>;
+  @Output() hideEvent = new EventEmitter<void>();
 
   constructor(private boardService: BoardService,
               private store: Store
@@ -29,6 +30,10 @@ export class MobileMenuComponent {
 
   onBoardSelect(board: Board) {
     this.boardService.saveSelectedBoard(board);
+  }
+
+  hideModal() {
+    this.hideEvent.emit();
   }
 
 }

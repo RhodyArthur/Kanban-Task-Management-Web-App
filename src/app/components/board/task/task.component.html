@@ -6,5 +6,7 @@
 </div>
 
 @if (showModal) {
-    <app-task-details [task]="task"/>
+    <app-task-details
+    [task]="task"
+    (hideEvent)="hideModal()"/>
 }

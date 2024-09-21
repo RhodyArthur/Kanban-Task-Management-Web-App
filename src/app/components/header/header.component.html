@@ -29,5 +29,7 @@
 </div>
 
 @if (showMenu) {
-    <app-mobile-menu/>
+    <app-mobile-menu
+    (hideEvent)="hideMenu()"
+    />
 }

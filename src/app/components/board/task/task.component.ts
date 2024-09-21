@@ -25,5 +25,10 @@ export class TaskComponent implements OnChanges{
   viewTaskDetails() {
     this.showModal = !this.showModal;
   }
+
+  // hide modal
+  hideModal() {
+    this.showModal = false;
+  }
   
 }

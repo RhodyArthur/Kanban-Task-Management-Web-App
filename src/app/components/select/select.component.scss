@@ -1,5 +1,5 @@
 @use '../../../styles/theme';
-@import '../../../styles/breakpoints';
+@use '../../../styles/breakpoints';
 @import '../../../styles/mixin';
 @import '../../../styles/variables';
 @import '../../../styles/typography';
@@ -15,12 +15,14 @@
     }
 
     .custom-select {
-        appearance: none;
+        // appearance: none;
         border: none;
         padding: 0.5rem;
         cursor: pointer;
         background-color: transparent;
+        width: pxToRem(295);
         color: var(--text-clr);
+        position: relative;
 
         &::after {
             content: url('../../../assets/icon-chevron-down.svg'); 
@@ -35,19 +37,19 @@
           background-color: var(--dropdown); 
           color: $medium-gray;
           border-radius: 8px;
-          width: 20rem;
+          border: none;
+          cursor: pointer;
           @extend .body-l;
 
           &:active,
-          &:focus,
+          &:focus-within,
+          &:checked,
           &:hover {
-            background-color: transparent;
-            color: $red;
+            background-color: var(--dropdown);
           }
 
         }
 
-       
 
         &:focus {
             outline: none;
@@ -55,4 +57,15 @@
 
     }
     
+}
+
+// media queries
+@include breakpoints.mq(tablet) {
+
+    .select-container {
+
+        .custom-select {
+            width: pxToRem(416);
+        }
+    }
 }
