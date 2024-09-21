@@ -97,15 +97,6 @@
                     background-color: transparent;
                     border: 1px solid transparent;
                     color: $purple;
-
-                    
-                    // &:hover {
-                    //     color: $white;
-                        
-                    //     svg {
-                    //         fill: $white;
-                    //     }
-                    // }
               
                 }
             }
@@ -118,6 +109,7 @@
         .theme {
 
             @include flex-row(flex,center,center);
+            margin-top: 1rem;
         }
 
         .hide-sidebar {
