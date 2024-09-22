@@ -4,8 +4,8 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } fr
 import { Column } from '../../../../models/column';
 import { Store } from '@ngrx/store';
 import { boardState } from '../../../../state/board/board.entity';
-import { addBoard, updateBoard } from '../../../../state/board/board.actions';
-import { v4 as uuidv4 } from 'uuid'
+import { addBoard, loadBoards, setSelectedBoard, updateBoard } from '../../../../state/board/board.actions';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-add-edit-board',
@@ -96,12 +96,13 @@ export class AddEditBoardComponent {
         this.store.dispatch(updateBoard({board: newBoard}))
       }
       else {
-          this.store.dispatch(addBoard({board: newBoard}))
+        this.store.dispatch(addBoard({board: newBoard}))
       }
 
-
+      // this.store.select(setSelectedBoard({board: newBoard}))
       this.boardForm.reset();
       this.columns.clear();
+      this.hideEvent.emit();
     }
   }
 }
