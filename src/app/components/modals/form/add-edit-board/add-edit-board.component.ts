@@ -79,10 +79,15 @@ export class AddEditBoardComponent {
 
   onSubmit() {
     if(this.boardForm.valid) {
-      const newColumns = this.columns.value.map((columnName:string) => ({
-        name: columnName,
-        tasks: []
-      }))
+
+      const newColumns = this.columns.value.map((columnName:string, index:number) => {
+        const existingColumn = this.board ? this.board.columns[index] : null;
+
+        return {
+          name: columnName,
+          tasks: existingColumn ? existingColumn.tasks : []
+        }
+    })
 
       // create board
       const newBoard: Board = {
@@ -94,12 +99,12 @@ export class AddEditBoardComponent {
       // update board
       if(this.board) {
         this.store.dispatch(updateBoard({board: newBoard}))
+        this.store.dispatch(setSelectedBoard({board: newBoard}))
       }
       else {
         this.store.dispatch(addBoard({board: newBoard}))
       }
 
-      // this.store.select(setSelectedBoard({board: newBoard}))
       this.boardForm.reset();
       this.columns.clear();
       this.hideEvent.emit();

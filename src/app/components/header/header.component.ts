@@ -33,7 +33,7 @@ export class HeaderComponent {
   }
 
   editBoard() {
-    console.log('display edit board')
+    this.showForm = true;
   }
 
   deleteBoard() {

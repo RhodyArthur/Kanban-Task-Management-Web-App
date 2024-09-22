@@ -23,7 +23,7 @@
             </button>
 
             <!-- ellipsis -->
-            <app-menu (edit)="editBoard()" (delete)="deleteBoard()"/>
+            <app-menu (edit)="editBoard()" (delete)="deleteBoard()" />
         </div>
     </div>
 </div>
@@ -38,5 +38,6 @@
 @if (showForm) {
     <app-add-edit-board
     (hideEvent)="closeForm()"
+    [board]="selectedBoard$ | async"
     />
 }
