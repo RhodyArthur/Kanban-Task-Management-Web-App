@@ -1,4 +1,5 @@
 @import '../styles/typography';
+@import '../styles/variables';
 
 *,
 ::before,
@@ -14,4 +15,11 @@ body {
 
 svg {
     cursor: pointer;
+}
+
+.error {
+    color: $red;
+    position: absolute;
+    top: 29%;
+    right: 10%;
 }

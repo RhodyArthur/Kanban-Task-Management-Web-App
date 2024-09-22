@@ -8,16 +8,9 @@
     @include blur-background;
 }
 .details-container {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%);
-    width: pxToRem(343);
-    border-radius: 6px;
-    padding: 1.5rem;
-    z-index: 11;
-    background-color: var(--sidebar-bg);
+    @include modal;
     @include flex-column;
+    padding: 1.5rem;
     overflow: scroll;
 
     .title-container {

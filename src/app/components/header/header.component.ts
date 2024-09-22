@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MobileMenuComponent } from "../mobile-menu/mobile-menu.component";
 import { Observable } from 'rxjs/internal/Observable';
 import { Store } from '@ngrx/store';
@@ -7,11 +7,12 @@ import { boardState } from '../../state/board/board.entity';
 import { selectSelectedBoard } from '../../state/board/board.selectors';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from "../menu/menu.component";
+import { AddEditBoardComponent } from "../modals/form/add-edit-board/add-edit-board.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MobileMenuComponent, CommonModule, MenuComponent],
+  imports: [MobileMenuComponent, CommonModule, MenuComponent, AddEditBoardComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -19,7 +20,9 @@ export class HeaderComponent {
 
   showMenu: boolean = false;
   selectedBoard$!: Observable<Board | null | undefined>;
-
+  showForm: boolean = false;
+  @Output() createBtnClicked = new EventEmitter<void>();
+  
   constructor(private store: Store<boardState>) {
     this.selectedBoard$ = this.store.select(selectSelectedBoard);
   }
@@ -41,4 +44,17 @@ export class HeaderComponent {
     this.showMenu = false;
   }
 
+  // display board form
+  displayBoardForm() {
+    this.showForm = true;
+  }
+
+  // close form
+  closeForm() {
+    this.showForm = false;
+  }
+
+  onCreateBoard() {
+    this.createBtnClicked.emit()
+  }
 }

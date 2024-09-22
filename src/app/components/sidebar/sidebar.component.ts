@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ThemeComponent } from "../theme/theme.component";
 import {  Observable } from 'rxjs';
 import { Board } from '../../models/board';
@@ -20,6 +20,9 @@ export class SidebarComponent {
 
   boards$!: Observable<Board[]>;
   showSidebar: boolean = true;
+  @Output() createBtnClicked = new EventEmitter<void>();
+  @Output() hideEvent = new EventEmitter<void>();
+
 
   constructor(private boardService: BoardService,
               private store: Store<boardState>) {}
@@ -36,6 +39,12 @@ export class SidebarComponent {
 
   onBoardSelect(board: Board) {
     this.boardService.saveSelectedBoard(board);
+  }
+
+  // display create form modal
+  onCreateBtnClicked() {
+    console.log('display form')
+    this.createBtnClicked.emit();
   }
 
 }

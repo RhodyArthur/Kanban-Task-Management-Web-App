@@ -20,7 +20,7 @@ export class MobileMenuComponent {
 
   boards$!: Observable<Board[]>;
   @Output() hideEvent = new EventEmitter<void>();
-  @Output() showForm = new EventEmitter<void>();
+  @Output() createBtnClicked = new EventEmitter<void>();
 
   constructor(private boardService: BoardService,
               private store: Store
@@ -39,9 +39,7 @@ export class MobileMenuComponent {
   }
 
   // display create form modal
-  displayForm() {
-    this.showForm.emit();
-    console.log('display form')
+  onCreateBtnClicked() {
+    this.createBtnClicked.emit();
   }
-
 }

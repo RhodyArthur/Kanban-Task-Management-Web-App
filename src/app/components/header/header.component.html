@@ -31,5 +31,12 @@
 @if (showMenu) {
     <app-mobile-menu
     (hideEvent)="hideMenu()"
+    (createBtnClicked)="displayBoardForm()"
+    />
+}
+
+@if (showForm) {
+    <app-add-edit-board
+    (hideEvent)="closeForm()"
     />
 }
