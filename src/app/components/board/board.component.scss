@@ -1,0 +1,81 @@
+@use '../../../styles/theme';
+@use '../../../styles/breakpoints';
+@import '../../../styles/mixin';
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+
+.board-container {
+    @include flex-row(flex, flex-start, start);
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+
+
+    .column {
+        @include flex-column;
+        margin-top: 1.5rem;
+        margin-left: 1rem;
+        width: pxToRem(280);
+        flex-shrink: 0;
+
+        .column-name {
+            color: $medium-gray;
+            @extend .body-m;
+            letter-spacing: 2.4px;
+            text-transform: uppercase;
+            display: flex;
+            gap: 0.75rem;
+
+            .column-color {
+                display: block;
+                width: pxToRem(15);
+                height: pxToRem(15);
+                border-radius: 50%;
+            }
+        }
+    }
+
+    button {
+        width: pxToRem(280);
+        height: 100vh;
+        border: none;
+        background: var(--new-column-bg);
+        flex-shrink: 0;
+        margin-top: 3.7rem;
+        border-radius: 6px;
+        color: $medium-gray;
+        cursor: pointer;
+        @extend .heading-xl;
+
+        svg {
+            fill: $medium-gray;
+        }
+
+        &:hover {
+            color: $purple;
+            svg {
+                fill: $purple;
+            }
+        }
+    }
+
+    .empty-board {
+        @include flex-column();
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+        max-width: pxToRem(343);
+        width: 100%;
+        color: $medium-gray;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+
+
+       button {
+        @include button-styles($purple, $white, $purple-50);
+        padding: .967rem 1.62rem;
+
+       }
+    }
+}

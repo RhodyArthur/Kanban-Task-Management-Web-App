@@ -1,0 +1,12 @@
+<div class="task-container" (click)="viewTaskDetails()">
+    <div class="task">
+        <h4 class="task-name">{{task.title}}</h4>
+        <p class="task-count">{{completedTasksCount}} of {{task.subtasks.length}} subtasks</p>
+    </div>
+</div>
+
+@if (showModal) {
+    <app-task-details
+    [task]="task"
+    (hideEvent)="hideModal()"/>
+}

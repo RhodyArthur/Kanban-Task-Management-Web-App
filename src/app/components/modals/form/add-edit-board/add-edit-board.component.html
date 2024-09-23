@@ -1,0 +1,60 @@
+<div class="bg" (click)="hideModal()"></div>
+<div class="form-container">
+    <div class="form-title">
+        <p>{{board ? 'Edit Board' : 'Add New Board'}}</p>
+    </div>
+
+    <!-- form -->
+     <form [formGroup]="boardForm" (ngSubmit)="onSubmit()">
+        <!-- board name -->
+        <div class="name-field">
+            <label for="name"> Board Name </label>
+            <input type="text" id="name" formControlName="name" placeholder="e.g. Web Design">
+            @if (boardForm.get('name')?.invalid && (boardForm.get('name')?.touched || boardForm.get('name')?.dirty)) {
+                @if (boardForm.get('name')?.errors?.['required']) {
+                    <small class="error">Can't be empty</small>
+                }
+             }
+        </div>
+
+        <!-- board column -->
+         <div class="column-container">
+             
+             <!-- columns -->
+             <div class="column" formArrayName="columns">
+                <label for="column">Board Columns</label>
+
+                @for (column of columns.controls; track $index) {
+                        <div class="input-fields">
+                        <input type="text" id="column" formControlName="{{$index}}">
+                        <!-- svg --> 
+                        <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" (click)="removeColumn($index)">
+                            <g fill="#828FA3" fill-rule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/>
+                            <path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g>
+                        </svg>
+
+                        <!-- validations -->
+                         @if (boardForm.get('column')?.invalid && (boardForm.get('column')?.touched || boardForm.get('column')?.dirty)) {
+                            @if (boardForm.get('column')?.errors?.['required']) {
+                                <small class="error">Can't be empty</small>
+                            }
+                         }
+                    </div>
+                    }
+
+            </div>
+            <!-- button -->
+            <button type="button" (click)="addNewColumn()">
+                <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#635FC7" d="M7.368 12V7.344H12V4.632H7.368V0H4.656v4.632H0v2.712h4.656V12z"/>
+                </svg>
+                Add New Column
+            </button>
+         </div>
+
+        <!-- button -->
+        <button type="submit" [disabled]="boardForm.invalid">
+            {{board ? 'Save Changes' : 'Create New Board'}}
+        </button>
+     </form>
+</div>

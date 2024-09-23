@@ -1,0 +1,139 @@
+@use '../../../styles/theme';
+@use '../../../styles/breakpoints';
+@import '../../../styles/mixin';
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+
+.bg {
+    background-color: rgba(0 , 0, 0, 0.6);
+    // backdrop-filter: blur(6px);
+    height: calc(100vh - 4rem);
+    padding-top: 1rem;
+    opacity: 0.7;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+
+}
+.sidebar-container {
+    background-color: var(--sidebar-bg);
+    width: pxToRem(264);
+    border-radius: 8px;
+    padding: 1rem 0;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 11;
+
+    .boards-container {
+        @include flex-column;
+        gap: .5rem;
+        
+        width: pxToRem(240);
+        
+        p {
+            @extend .body-m;
+            padding-left: 1rem;
+            letter-spacing: 2.4px;
+            color: $medium-gray;
+        }
+
+
+        .boards {
+            @include flex-column;
+            gap: 0px;
+
+            a {
+                @extend .body-m;
+                padding: 1rem 0;
+                padding-left: 1rem;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+                color: $medium-gray;
+                
+                &:active,
+                    &:focus {
+                        background-color: $purple;
+                        color: $white;
+                        border-radius: 0 6.25rem  6.25rem 0;
+
+                        svg {
+                            fill: $white;
+                        }
+                    }
+
+                    &:hover {
+                        color: $purple;
+                        background-color: var(--link-hover);
+                        border-radius: 0 6.25rem  6.25rem 0;
+
+                        svg {
+                            fill: $purple;
+                        }
+                    }
+
+
+                svg {
+                    fill: $medium-gray;
+                }
+
+            }
+
+            .btn {
+                @extend a;
+                color: $purple;
+
+                svg {
+                    fill: $purple;
+                }
+                
+                button {
+                    background-color: transparent;
+                    border: 1px solid transparent;
+                    color: $purple;
+              
+                }
+            }
+        }
+    }
+
+    .theme-container {
+        @include flex-column;
+
+        .theme {
+
+            @include flex-row(flex,center,center);
+            margin-top: 1rem;
+        }
+
+        .hide-sidebar {
+            display: none;
+        }
+    }
+}
+
+.show-bar {
+    @include button-styles($purple, $white, $purple-50);
+    position: absolute;
+    bottom: 5px;
+    padding: .8rem 1.175rem;
+    border-radius: 0 6.25rem 6.25rem 0;
+
+
+}
+
+// media queries
+@include breakpoints.mq(tablet) {
+    .bg {
+        display: none;
+    }
+    .sidebar-container {
+        display: none;
+    }
+}

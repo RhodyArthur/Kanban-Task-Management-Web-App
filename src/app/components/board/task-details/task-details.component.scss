@@ -1,0 +1,108 @@
+@use '../../../../styles/theme';
+@use '../../../../styles/breakpoints';
+@import '../../../../styles/mixin';
+@import '../../../../styles/variables';
+@import '../../../../styles/typography';
+
+.bg {
+    @include blur-background;
+}
+.details-container {
+    @include modal;
+    @include flex-column;
+    padding: 1.5rem;
+    overflow: scroll;
+
+    .title-container {
+        @include flex-row(flex, space-between, center);
+        @extend .heading-l;
+    }
+
+    .description {
+        color: $medium-gray;
+        @extend .body-m;
+    }
+
+    .subtasks-container {
+        @include flex-column;
+        gap: 10px;
+
+        p {
+            @extend .body-m;
+            color: $medium-gray;
+        }
+
+        .subtask {
+            background-color: var(--subtask);
+            border-radius: 4px;
+            padding: 1rem;
+
+            &:hover {
+                background-color: $purple;
+            }
+
+            label {
+                @extend .body-m;
+                cursor: pointer;
+
+                input[type="checkbox"] {
+                    appearance: none;
+                }
+
+                .checkmark {
+                    margin-right: 1rem;
+                    width: pxToRem(13);
+                    height: pxToRem(13);
+                    background-color: var(--subtask);
+                    border: 1px solid #494949;
+                    border-radius: 3px;
+                    position: relative;
+                    display: inline-block;
+                    margin-bottom: -1px;
+                  }
+                  
+                  /* Change background when checkbox is checked */
+                  input[type="checkbox"]:checked  {
+                    background-color: $purple; 
+                    border: 1px solid $purple;
+
+                    &:active,
+                    &:focus {
+                        color: $medium-gray;
+                    }
+                  }
+
+                  input[type="checkbox"]:checked::after {
+                    content: url('../../../../assets/icons8-done.svg');
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+
+                  }
+
+            }
+
+
+
+        }
+    }
+
+    .status-container {
+        @include flex-column;
+        gap: .5rem;
+        p {
+            @extend .body-m;
+        }
+    }
+}
+
+// media queries
+@include breakpoints.mq(tablet) {
+    .details-container {
+        width: pxToRem(480);
+    }
+}
+

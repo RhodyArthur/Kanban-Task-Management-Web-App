@@ -1,2 +1,17 @@
-<app-header/>
-<app-sidebar/>
+<div class="app-container">
+    <app-header/>
+    <div class="main">
+        <app-sidebar
+         (createBtnClicked)="displayForm()"
+         />
+
+         @if (showForm) {
+            <app-add-edit-board (hideEvent)="closeForm()"/>
+         }
+
+        <div class="content">
+            <router-outlet/>
+        </div>
+
+    </div>
+</div>

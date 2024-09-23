@@ -1,0 +1,53 @@
+<!-- main board -->
+<div class="board-container" *ngIf="selectedBoard$ | async as selectedBoard">
+
+    <!-- columns -->
+    @for (column of selectedBoard.columns; track $index) {
+        <div class="column">
+            <div class="column-name">
+                <span class="column-color"
+                [style]="{background: colors[$index]}"></span>
+                <p>{{column.name}} ({{column.tasks.length}})</p>
+            </div>
+
+            <!-- tasks -->
+            @for (task of column.tasks; track $index) {
+                <div class="tasks-container">
+                    <app-task [task]="task"/>
+                </div>
+            }
+        </div>
+    }
+    <!-- new column button -->
+        <button (click)="addNewColumn()">
+            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+                <path fill="" d="M7.368 12V7.344H12V4.632H7.368V0H4.656v4.632H0v2.712h4.656V12z"/></svg>
+            New Column
+        </button>
+
+
+        @if (selectedBoard.columns.length === 0) {
+
+            <div class="empty-board">
+                <p>This board is empty. Create a new column to get started.</p>
+
+                <button (click)="addNewColumn()">
+                    <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#FFF" d="M7.368 12V7.344H12V4.632H7.368V0H4.656v4.632H0v2.712h4.656V12z"/>
+                    </svg>
+                    Add New Column
+                </button>
+            </div>
+        }
+
+
+
+    </div>
+    @if (showForm) {
+        <app-add-edit-board
+        [board]="selectedBoard$ | async"
+        (hideEvent)="hideModal()"
+        />
+    }
+
+

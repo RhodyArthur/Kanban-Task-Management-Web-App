@@ -1,0 +1,71 @@
+@use '../../../styles/theme';
+@use '../../../styles/breakpoints';
+@import '../../../styles/mixin';
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+
+.select-container {
+    @include flex-row(flex, space-between, center);
+    border: 1px solid $disabled-color;
+    border-radius: 4px;
+
+    &:hover,
+    &:active {
+        border: 1px solid $purple;
+    }
+
+    .custom-select {
+        // appearance: none;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        background-color: transparent;
+        width: pxToRem(295);
+        color: var(--text-clr);
+        position: relative;
+
+        &::after {
+            content: url('../../../assets/icon-chevron-down.svg'); 
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        option {
+          background-color: var(--dropdown); 
+          color: $medium-gray;
+          border-radius: 8px;
+          border: none;
+          cursor: pointer;
+          @extend .body-l;
+
+          &:active,
+          &:focus-within,
+          &:checked,
+          &:hover {
+            background-color: var(--dropdown);
+          }
+
+        }
+
+
+        &:focus {
+            outline: none;
+        }
+
+    }
+    
+}
+
+// media queries
+@include breakpoints.mq(tablet) {
+
+    .select-container {
+
+        .custom-select {
+            width: pxToRem(416);
+        }
+    }
+}

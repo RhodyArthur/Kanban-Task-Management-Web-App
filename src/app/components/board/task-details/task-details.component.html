@@ -1,0 +1,63 @@
+<div class="bg" (click)="hideModal()"></div>
+<div class="details-container">
+    @if (task) {
+
+    <!-- task-title -->
+    <div class="title-container">
+        <p class="title">{{task.title}}</p>
+        <app-menu (delete)="onDeleteTask()" (edit)="onEditTask()"/>
+    </div>
+
+     <!-- task description -->
+    <div>
+        @if (task.description) {
+        <p class="description">{{task.description}}</p>
+        }
+        @else {
+            <p class="description">No description for this task</p>
+        }
+    </div>
+
+    <!-- subtasks -->
+    <div class="subtasks-container">
+        <p>Subtasks ({{completedTasksCount}} 0f {{task.subtasks.length}})</p>
+
+        @for (subtask of task.subtasks; track $index) {
+            <div class="subtask">
+                <label for="subtask">
+                    <input type="checkbox" name="subtask" id="subtask" [checked]="subtask.isCompleted" class="checkmark">
+                    {{subtask.title}}
+                </label>
+            </div>
+        }
+    </div>
+
+    <div class="status-container">
+        <p>Current Status</p>
+
+        @if (task) {
+            <div class="status">
+                <app-select
+                [selectedStatus]="task.status"
+                [statuses]="currentStatuses"/>
+            </div>
+        }
+    </div>
+
+    }
+</div>
+
+<!--task-form-->
+@if (showTaskForm) {
+    <app-add-edit-task
+    [task]="task"
+    (hideEvent)="closeTaskForm()"/>
+}
+
+<!--delete board -->
+@if (showDeleteModal) {
+    <app-delete-modal
+        [task]="task"
+        (hideEvent)="closeDeleteModal()"
+    />
+}
