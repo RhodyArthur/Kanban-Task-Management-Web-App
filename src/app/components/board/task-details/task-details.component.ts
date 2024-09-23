@@ -3,19 +3,19 @@ import { Task } from '../../../models/task';
 import { MenuComponent } from "../../menu/menu.component";
 import { SelectComponent } from "../../select/select.component";
 import { BoardService } from '../../../services/board.service';
+import {AddEditTaskComponent} from "../../modals/form/add-edit-task/add-edit-task.component";
 
 @Component({
   selector: 'app-task-details',
   standalone: true,
-  imports: [ MenuComponent, SelectComponent],
+    imports: [MenuComponent, SelectComponent, AddEditTaskComponent],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.scss'
 })
 export class TaskDetailsComponent {
   @Input() task!: Task;
-  @Output() editEvent = new EventEmitter<void>();
-  @Output() deleteEvent = new EventEmitter<void>();
   @Output() hideEvent = new EventEmitter<void>();
+  showTaskForm: boolean = false;
 
   currentStatuses: string[] = [];
   completedTasksCount: number = 0;
@@ -34,15 +34,18 @@ export class TaskDetailsComponent {
     }
 
   onEditTask() {
-    this.editEvent.emit();
-
+      this.showTaskForm = true;
   }
 
   onDeleteTask() {
-    this.deleteEvent.emit();
+    console.log('delete')
   }
 
   hideModal() {
     this.hideEvent.emit();
+  }
+
+  closeTaskForm(): void {
+      this.showTaskForm = false;
   }
 }

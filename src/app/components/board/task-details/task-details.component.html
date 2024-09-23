@@ -46,3 +46,10 @@
 
     }
 </div>
+
+<!--task-form-->
+@if (showTaskForm) {
+    <app-add-edit-task
+    [task]="task"
+    (hideEvent)="closeTaskForm()"/>
+}

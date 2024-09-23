@@ -8,11 +8,12 @@ import { selectSelectedBoard } from '../../state/board/board.selectors';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from "../menu/menu.component";
 import { AddEditBoardComponent } from "../modals/form/add-edit-board/add-edit-board.component";
+import {AddEditTaskComponent} from "../modals/form/add-edit-task/add-edit-task.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MobileMenuComponent, CommonModule, MenuComponent, AddEditBoardComponent],
+  imports: [MobileMenuComponent, CommonModule, MenuComponent, AddEditBoardComponent, AddEditTaskComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -22,7 +23,8 @@ export class HeaderComponent {
   selectedBoard$!: Observable<Board | null | undefined>;
   showForm: boolean = false;
   @Output() createBtnClicked = new EventEmitter<void>();
-  
+  showTaskForm: boolean = false;
+
   constructor(private store: Store<boardState>) {
     this.selectedBoard$ = this.store.select(selectSelectedBoard);
   }
@@ -32,14 +34,12 @@ export class HeaderComponent {
     this.showMenu = !this.showMenu;
   }
 
-  editBoard() {
-    this.showForm = true;
-  }
-
+  // display delete modal
   deleteBoard() {
     console.log('display delete modal')
   }
 
+  // close menu
   hideMenu() {
     this.showMenu = false;
   }
@@ -49,12 +49,21 @@ export class HeaderComponent {
     this.showForm = true;
   }
 
-  // close form
+  // close board form
   closeForm() {
     this.showForm = false;
   }
 
   onCreateBoard() {
     this.createBtnClicked.emit()
+  }
+
+  // display task form
+  displayTaskForm():void {
+    this.showTaskForm = true;
+  }
+
+  closeTaskForm():void {
+      this.showTaskForm = false;
   }
 }

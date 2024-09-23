@@ -1,1 +1,72 @@
-<p>add-edit-task works!</p>
+<div class="bg" (click)="closeForm()"></div>
+<div class="form-container">
+    <!--  title -->
+    <div class="form-title">
+        <p>{{task ? 'Edit Task' : 'Add New Task' }}</p>
+    </div>
+
+    <form [formGroup]="taskForm">
+        <!--  task title  -->
+        <div class="task-title">
+            <label for="title">Title</label>
+            <input type="text" id="title" formControlName="title" placeholder="e.g. Take coffee break">
+        </div>
+
+        <!--    description-->
+        <div class="description-container">
+            <label for="description">Description</label>
+            <textarea name="description" id="description" formControlName="description"
+            placeholder="e.g. It’s always good to take a break. This 15 minute break will  recharge the batteries a little.">
+            </textarea>
+        </div>
+
+        <!--   subtasks -->
+        <div class="subtasks-container" formArrayName="subtasks">
+            <label for="subtask">Subtasks</label>
+
+            @for (subtask of subtasks.controls; track $index) {
+                <div class="subtask">
+                    <input type="text" id="subtask" formControlName="{{$index}}" placeholder="e.g. Make coffee">
+                    <!-- svg -->
+                    <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" (click)="removeSubtask($index)">
+                        <g fill="#828FA3" fill-rule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/>
+                            <path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g>
+                    </svg>
+
+                    <!-- validations -->
+                    @if (taskForm.get('subtask')?.invalid && (taskForm.get('subtask')?.touched || taskForm.get('subtask')?.dirty)) {
+                        @if (taskForm.get('subtask')?.errors?.['required']) {
+                            <small class="error">Can't be empty</small>
+                        }
+                    }
+                </div>
+            }
+            <!-- button -->
+            <button type="button" (click)="addNewSubtask()">
+                <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#635FC7" d="M7.368 12V7.344H12V4.632H7.368V0H4.656v4.632H0v2.712h4.656V12z"/>
+                </svg>
+                Add New Subtask
+            </button>
+        </div>
+
+        <!--  status container  -->
+        <div class="status-container">
+            <label for="status">Status</label>
+
+            <div class="status">
+                <!--  select container -->
+                <app-select
+                    id="status"
+                    [selectedStatus]="task?.status ?? '' "
+                    [statuses]="currentStatuses"
+                />
+            </div>
+        </div>
+
+        <!--    button -->
+        <button type="submit" [disabled]="taskForm.invalid">
+            {{ task ? 'Save Changes' : ' Create Task' }}
+        </button>
+    </form>
+</div>

@@ -7,15 +7,15 @@
     <div class="container-1">
         <div class="board-name" (click)="displayMenu()" >
             <p *ngIf="selectedBoard$ | async as board">
-                {{board ? board.name : 'No Board Selected'}} 
+                {{board ? board.name : 'No Board Selected'}}
             </p>
             <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
                 <path stroke="#635FC7" stroke-width="2" fill="none" d="m1 1 4 4 4-4"/>
             </svg>
         </div>
-        
+
         <div class="container-2">
-            <button type="button">
+            <button type="button" (click)="displayTaskForm()" [disabled]="!selectedBoard$">
                 <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
                     <path fill="#FFF" d="M7.368 12V7.344H12V4.632H7.368V0H4.656v4.632H0v2.712h4.656V12z"/>
                 </svg>
@@ -23,7 +23,7 @@
             </button>
 
             <!-- ellipsis -->
-            <app-menu (edit)="editBoard()" (delete)="deleteBoard()" />
+            <app-menu (edit)="displayBoardForm()" (delete)="deleteBoard()" />
         </div>
     </div>
 </div>
@@ -40,4 +40,13 @@
     (hideEvent)="closeForm()"
     [board]="selectedBoard$ | async"
     />
+}
+
+
+<!--task form-->
+@if (showTaskForm) {
+  <app-add-edit-task
+      [board]="selectedBoard$ | async"
+      (hideEvent)= "closeTaskForm()"
+  />
 }

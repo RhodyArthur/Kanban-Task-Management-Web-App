@@ -47,20 +47,17 @@ export class AddEditBoardComponent {
    get columns(): FormArray {
     return this.boardForm.get('columns') as FormArray;
   }
-  
-  // set columns for existing board 
+
+  // set columns for existing board
   setColumns(columns: Column[]) {
     const columnFormArray = this.columns;
 
     // Clear existing columns if any
-    columnFormArray.clear(); 
+    columnFormArray.clear();
     columns.forEach(column => {
       columnFormArray.push(this.fb.control(column.name, Validators.required));
     });
   }
-
-  
- 
 
   // add new column
   addNewColumn() {
