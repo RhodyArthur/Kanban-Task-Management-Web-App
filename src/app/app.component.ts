@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./components/header/header.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Board } from './models/board';
+import { Store } from '@ngrx/store';
+
 import { loadBoards } from './state/board/board.actions';
-import { selectAllBoards, selectBoardState } from './state/board/board.selectors';
 import { AddEditBoardComponent } from "./components/modals/form/add-edit-board/add-edit-board.component";
 
 @Component({
@@ -16,7 +14,7 @@ import { AddEditBoardComponent } from "./components/modals/form/add-edit-board/a
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'kanban-task-manager';
   showForm: boolean = false;
 
