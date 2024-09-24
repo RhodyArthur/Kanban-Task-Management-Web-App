@@ -14,7 +14,6 @@ export class DeleteModalComponent {
     @Input() task: Task | null = null;
     @Output() hideEvent = new EventEmitter<void>();
 
-
     // hide delete modal
     closeDelete():void {
         this.hideEvent.emit()

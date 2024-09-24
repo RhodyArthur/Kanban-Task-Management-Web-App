@@ -1,0 +1,44 @@
+@use '../../../../styles/theme';
+@use '../../../../styles/breakpoints';
+@import '../../../../styles/variables';
+@import '../../../../styles/typography';
+@import '../../../../styles/mixin';
+@import '../../../../styles/reset';
+
+.bg {
+    @include blur-background;
+}
+
+.delete-container {
+    @include flex-column;
+    gap: 1.5rem;
+    @include modal;
+    padding: 1.5rem;
+
+    .title {
+        @extend .heading-l;
+        color: $red;
+    }
+
+    .description {
+        @extend  .body-l;
+        color: $medium-gray;
+    }
+
+    .delete-btn {
+        @include button-styles($red, $white, $red-50);
+        padding: .71rem 1.62rem;
+    }
+
+    .cancel-btn {
+            @include button-styles(var(--link-hover), $purple, var(--link-hover));
+            padding: .71rem 1.62rem;
+    }
+}
+
+// media queries
+@include breakpoints.mq(tablet) {
+    .form-container {
+        width: pxToRem(480);
+    }
+}

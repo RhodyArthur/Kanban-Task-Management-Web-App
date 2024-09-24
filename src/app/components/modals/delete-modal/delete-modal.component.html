@@ -1,1 +1,20 @@
-<p>delete-modal works!</p>
+<div class="bg" (click)="closeDelete()"></div>
+<div class="delete-container">
+<!--    title-->
+    <p class="title">{{ board ? 'Delete this board?' : 'Delete this task'}}</p>
+
+<!--    description-->
+    <p class="description">
+        {{ board ?
+        'Are you sure you want to delete the "' + board?.name + '" board? This action will remove all columns and tasks and cannot be reversed.'
+        :
+        'Are you sure you want to delete the "' + task?.title + '" task and its subtasks? This action cannot be reversed.'
+        }}
+    </p>
+
+
+<!--    buttons-->
+    <button type="submit" class="delete-btn">Delete</button>
+    <button type="submit" class="cancel-btn">Cancel</button>
+
+</div>
