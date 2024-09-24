@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges
+} from '@angular/core';
 import { Task } from '../../../models/task';
 import { MenuComponent } from "../../menu/menu.component";
 import { SelectComponent } from "../../select/select.component";
@@ -14,25 +23,43 @@ import {DeleteModalComponent} from "../../modals/delete-modal/delete-modal.compo
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.scss'
 })
-export class TaskDetailsComponent {
+export class TaskDetailsComponent implements  OnInit, OnChanges{
   @Input() task!: Task;
   @Output() hideEvent = new EventEmitter<void>();
   showTaskForm: boolean = false;
   showDeleteModal: boolean = false;
   currentStatuses: string[] = [];
+  boardId!: string;
   completedTasksCount: number = 0;
 
-  constructor (private boardService: BoardService) {}
+  constructor (private boardService: BoardService,
+               private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     // get column names to display status
-    this.boardService.selectedBoard.getValue()?.columns.forEach(column => this.currentStatuses.push(column.name));
+    this.boardService.selectedBoard.getValue()?.columns
+        .forEach(column => {
+            this.currentStatuses.push(column.name);
+        });
+
+    // get board id
+    this.boardService.selectedBoard.subscribe(board => {
+        if (board) {
+            this.boardId = board.id
+        }
+    })
+
   }
 
-    // update completed tasks count
     ngOnChanges(changes: SimpleChanges): void {
       if(!this.task) return;
+      this.updateCompletedTasksCount();
+    }
+
+  // update completed tasks count
+    updateCompletedTasksCount() {
       this.completedTasksCount = this.task.subtasks.filter(subtask => subtask.isCompleted).length;
+      this.cdr.detectChanges();
     }
 
   onEditTask() {

@@ -31,20 +31,31 @@ export class AddEditTaskComponent implements  OnInit{
     constructor(private fb: FormBuilder,
                 private store: Store<boardState>,
                 private boardService: BoardService) {
-                this.initForm();
+                this.taskForm = fb.group({})
     }
 
     // initialize form
-    initForm():void {
+    // initForm():void {
+    //     this.taskForm = this.fb.group({
+    //         title: [this.task?.title || '', [Validators.required, Validators.minLength(2)]],
+    //         description: [this.task?.description || ''],
+    //         status: [this.task?.status || '', Validators.required],
+    //         subtasks: this.fb.array([this.fb.control('', Validators.required)])
+    //     })
+    // }
+
+    initForm() {
         this.taskForm = this.fb.group({
-            title: [this.task?.title || '', [Validators.required, Validators.minLength(2)]],
-            description: [this.task?.description || ''],
-            status: [this.task?.status || '', Validators.required],
-            subtasks: this.fb.array([])
-        })
+            title: ['', Validators.required],
+            description: [''],
+            subtasks: this.fb.array([this.fb.control('', Validators.required)]),
+            status: ['', Validators.required],
+        });
     }
 
+
     ngOnInit():void {
+        this.initForm();
         this.boardService.selectedBoard.getValue()?.columns.forEach(column => this.currentStatuses.push(column.name));
 
         if (this.board) {
@@ -96,7 +107,7 @@ export class AddEditTaskComponent implements  OnInit{
 
     onSubmit(): void {
         if (this.taskForm.valid) {
-            const newSubtasks = this.subtasks.value.map((subtask: string) =>  ({
+            const newSubtasks = this.taskForm.value.subtasks.map((subtask: string) =>  ({
                 title: subtask,
                 isCompleted: false
             }))
@@ -115,6 +126,7 @@ export class AddEditTaskComponent implements  OnInit{
                     columnName: this.taskForm.value.status,
                     task: newTask
                 }))
+                console.log(newTask)
             }
             else {
                 this.store.dispatch(addTask({
