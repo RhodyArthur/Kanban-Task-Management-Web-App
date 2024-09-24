@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Board } from '../../models/board';
 import { boardState } from '../../state/board/board.entity';
@@ -6,10 +6,8 @@ import { selectSelectedBoard } from '../../state/board/board.selectors';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { TaskComponent } from "./task/task.component";
-import { Task } from '../../models/task';
 import { AddEditBoardComponent } from "../modals/form/add-edit-board/add-edit-board.component";
 import {generateRandomColor} from "../../utils/color";
-import {BoardService} from "../../services/board.service";
 
 @Component({
   selector: 'app-board',
@@ -26,7 +24,6 @@ export class BoardComponent implements  OnInit{
   colors: string[] = []
 
   constructor(private store: Store<boardState>,
-              private boardService: BoardService
   ) {}
 
   ngOnInit() {

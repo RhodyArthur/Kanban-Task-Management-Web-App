@@ -7,7 +7,7 @@ import {Store} from "@ngrx/store";
 import {boardState} from "../../../../state/board/board.entity";
 import {BoardService} from "../../../../services/board.service";
 import {Subtask} from "../../../../models/subtask";
-import {addTask, updateTask} from "../../../../state/board/board.actions";
+import {addTask, setSelectedBoard, updateTask} from "../../../../state/board/board.actions";
 
 @Component({
   selector: 'app-add-edit-task',
@@ -20,7 +20,7 @@ import {addTask, updateTask} from "../../../../state/board/board.actions";
 })
 export class AddEditTaskComponent implements  OnInit{
 
-    @Input() board? : Board | null;
+    @Input() board : Board | null | undefined;
     @Input() task: Task | null = null;
     currentStatuses: string[] = [];
     @Output() hideEvent = new EventEmitter<void>();
@@ -126,7 +126,7 @@ export class AddEditTaskComponent implements  OnInit{
                     columnName: this.taskForm.value.status,
                     task: newTask
                 }))
-                console.log(newTask)
+
             }
             else {
                 this.store.dispatch(addTask({
@@ -134,7 +134,7 @@ export class AddEditTaskComponent implements  OnInit{
                     columnName: this.taskForm.value.status,
                     task: newTask
                 }))
-                console.log(newTask)
+                console.log('adding new task', newTask)
             }
 
             this.taskForm.reset();
