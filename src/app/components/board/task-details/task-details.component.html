@@ -24,8 +24,13 @@
 
         @for (subtask of task.subtasks; track $index) {
             <div class="subtask">
-                <label for="subtask">
-                    <input type="checkbox" name="subtask" id="subtask" [checked]="subtask.isCompleted" class="checkmark">
+                <label for="'subtask' + {{$index}}">
+                    <input type="checkbox"
+                           name="subtask"
+                           id="'subtask' + {{$index}}"
+                           [checked]="subtask.isCompleted"
+                           (change)="onSubtasksChange($index, $event)"
+                           class="checkmark">
                     {{subtask.title}}
                 </label>
             </div>
@@ -38,6 +43,7 @@
         @if (task) {
             <div class="status">
                 <app-select
+                    (change)="onStatusChange($event)"
                 [selectedStatus]="task.status"
                 [statuses]="currentStatuses"/>
             </div>
