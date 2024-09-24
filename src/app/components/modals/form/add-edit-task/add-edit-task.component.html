@@ -65,7 +65,7 @@
                 <!--  select container -->
                 <app-select
                     id="status"
-                    [selectedStatus]="task?.status ?? '' "
+                    [selectedStatus]="taskForm.get('status')?.value"
                     [statuses]="currentStatuses"
                     (emitChangeSelectStatus) ="taskForm.get('status')?.setValue($event)"
                 />

@@ -10,7 +10,7 @@ import {Task} from "../../../models/task";
   styleUrl: './delete-modal.component.scss'
 })
 export class DeleteModalComponent {
-    @Input() board? : Board | null;
+    @Input() board! : Board | null | undefined;
     @Input() task: Task | null = null;
     @Output() hideEvent = new EventEmitter<void>();
 

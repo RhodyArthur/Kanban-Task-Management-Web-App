@@ -1,6 +1,6 @@
     <div class="select-container">
         <!-- select status or column -->
-        <select name="status" id="status" class="custom-select" (change)="onChangeValue($event)">
+        <select name="status" id="status" class="custom-select" [value]="selectedStatus" (change)="onChangeValue($event)">
             @for (item of statuses; track $index) {
                 <option value="{{item}}" class="custom-option">{{item}}</option>
             }
