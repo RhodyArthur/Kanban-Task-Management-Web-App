@@ -48,6 +48,7 @@
 @mixin modal {
     border-radius: 6px;
     width: pxToRem(343);
+    height: pxToRem(400);
     background-color: var(--sidebar-bg);
     z-index: 11;
     position: absolute;

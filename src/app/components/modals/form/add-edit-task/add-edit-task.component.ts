@@ -49,7 +49,7 @@ export class AddEditTaskComponent implements  OnInit{
             title: ['', Validators.required],
             description: [''],
             subtasks: this.fb.array([this.fb.control('', Validators.required)]),
-            status: ['', Validators.required],
+            status: [this.currentStatuses.length === 1 ? this.currentStatuses[0] : '', Validators.required],
         });
     }
 
