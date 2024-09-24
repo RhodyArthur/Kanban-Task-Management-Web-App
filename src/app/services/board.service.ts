@@ -11,7 +11,7 @@ import { setSelectedBoard } from '../state/board/board.actions';
 export class BoardService {
 
   boards$!: Observable<Board[]>;
-  selectedBoard = new BehaviorSubject<Board | null | undefined>(null);  
+  selectedBoard = new BehaviorSubject<Board | null | undefined>(null);
 
   constructor(private store: Store) {
     this.boards$ = this.store.pipe(select(selectAllBoards));

@@ -1,10 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { ApiService } from "../../services/api.service";
-import { loadBoards, loadBoardsFailure, loadBoardsSuccess } from "./board.actions";
+import { addBoard, addTask, deleteBoard, deleteTask, loadBoards, loadBoardsFailure, loadBoardsSuccess } from "./board.actions";
 import { catchError, map, mergeMap, of, switchMap, tap } from "rxjs";
 import { Board } from "../../models/board";
 import { v4 as uuidv4 } from 'uuid'
+import { select, Store } from "@ngrx/store";
+import { selectAllBoards } from "./board.selectors";
+import { LocalStorageService } from "../../services/local-storage.service";
 
 @Injectable()
 export class BoardEffects {
@@ -39,8 +42,31 @@ export class BoardEffects {
         })
     ))
 
+    saveToLocalStorage$ = createEffect(
+        () =>
+          this.actions$.pipe(
+            ofType(
+              addBoard,
+              deleteBoard,
+              addTask,
+              deleteTask,
+            ),
+            mergeMap(() =>
+              this.store.pipe(
+                select(selectAllBoards),
+                tap((boards) =>
+                  this.localStorageService.setItem('boards', boards)
+                )
+              )
+            )
+          ),
+        { dispatch: false }
+      );
+
     
     constructor( private actions$: Actions,
-                 private apiService: ApiService
+                 private apiService: ApiService,
+                 private store: Store,
+                 private localStorageService: LocalStorageService
     ){}
 }

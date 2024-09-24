@@ -9,11 +9,12 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from "../menu/menu.component";
 import { AddEditBoardComponent } from "../modals/form/add-edit-board/add-edit-board.component";
 import {AddEditTaskComponent} from "../modals/form/add-edit-task/add-edit-task.component";
+import {DeleteModalComponent} from "../modals/delete-modal/delete-modal.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MobileMenuComponent, CommonModule, MenuComponent, AddEditBoardComponent, AddEditTaskComponent],
+    imports: [MobileMenuComponent, CommonModule, MenuComponent, AddEditBoardComponent, AddEditTaskComponent, DeleteModalComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -24,6 +25,7 @@ export class HeaderComponent {
   showForm: boolean = false;
   @Output() createBtnClicked = new EventEmitter<void>();
   showTaskForm: boolean = false;
+  showDeleteModal: boolean = false;
 
   constructor(private store: Store<boardState>) {
     this.selectedBoard$ = this.store.select(selectSelectedBoard);
@@ -36,7 +38,7 @@ export class HeaderComponent {
 
   // display delete modal
   deleteBoard() {
-    console.log('display delete modal')
+    this.showDeleteModal = true;
   }
 
   // close menu
@@ -52,6 +54,10 @@ export class HeaderComponent {
   // close board form
   closeForm() {
     this.showForm = false;
+  }
+
+  closeDeleteModal(): void {
+      this.showDeleteModal = false;
   }
 
   onCreateBoard() {

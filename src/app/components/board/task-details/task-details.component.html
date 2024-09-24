@@ -53,3 +53,11 @@
     [task]="task"
     (hideEvent)="closeTaskForm()"/>
 }
+
+<!--delete board -->
+@if (showDeleteModal) {
+    <app-delete-modal
+        [task]="task"
+        (hideEvent)="closeDeleteModal()"
+    />
+}

@@ -42,6 +42,13 @@
     />
 }
 
+<!--delete board -->
+@if (showDeleteModal) {
+    <app-delete-modal
+        [board]="selectedBoard$ | async"
+        (hideEvent)="closeDeleteModal()"
+    />
+}
 
 <!--task form-->
 @if (showTaskForm) {

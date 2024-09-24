@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Board } from '../../../../models/board';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Column } from '../../../../models/column';
 import { Store } from '@ngrx/store';
 import { boardState } from '../../../../state/board/board.entity';
-import { addBoard, loadBoards, setSelectedBoard, updateBoard } from '../../../../state/board/board.actions';
+import { addBoard, setSelectedBoard, updateBoard } from '../../../../state/board/board.actions';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   templateUrl: './add-edit-board.component.html',
   styleUrl: './add-edit-board.component.scss'
 })
-export class AddEditBoardComponent {
+export class AddEditBoardComponent implements OnInit{
   @Input() board?: Board | null;
   @Output() hideEvent = new EventEmitter<void>();
 

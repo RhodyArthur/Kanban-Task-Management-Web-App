@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { Board } from "../../models/board";
+import { Task } from "../../models/task";
 
 export const loadBoards = createAction('[Board] Load Boards');
 
@@ -23,4 +24,41 @@ export const deleteBoard = createAction('[Board] Delete Board',
 
 export const setSelectedBoard = createAction('[Board] Set Selected Board',
     props<{board: Board}>()
+);
+
+export const clearSelectedBoard = createAction('[Board] Clear Selected Board');
+
+export const moveTaskInColumn = createAction(
+    '[Board] Move Task In Column',
+    props<{ columnId: string; previousIndex: number; currentIndex: number }>()
+);
+
+// task actions
+export const addTask = createAction(
+    '[Board] Add Task',
+    props<{ boardId: string;
+            columnName: string;
+            task: Task }>()
+);
+
+export const updateTask = createAction(
+    '[Board] Update Task',
+    props<{ boardId: string;
+            columnName: string;
+            task: Task }>()
+);
+
+export const deleteTask = createAction(
+    '[Board] Delete Task',
+    props<{ boardId: string; columnName: string; taskId: string }>()
+);
+
+export const moveTask = createAction(
+    '[Board] Move Task',
+    props<{
+        boardId: string;
+        sourceColumn: string;
+        targetColumn: string;
+        taskId: string;
+    }>()
 );

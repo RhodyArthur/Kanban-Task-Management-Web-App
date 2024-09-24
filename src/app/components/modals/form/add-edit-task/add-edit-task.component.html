@@ -5,11 +5,17 @@
         <p>{{task ? 'Edit Task' : 'Add New Task' }}</p>
     </div>
 
-    <form [formGroup]="taskForm">
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
         <!--  task title  -->
         <div class="task-title">
             <label for="title">Title</label>
             <input type="text" id="title" formControlName="title" placeholder="e.g. Take coffee break">
+
+            @if (taskForm.get('title')?.invalid && (taskForm.get('title')?.touched || taskForm.get('title')?.dirty)) {
+                @if (taskForm.get('title')?.errors?.['required']) {
+                    <small class="error">Can't be empty</small>
+                }
+            }
         </div>
 
         <!--    description-->
@@ -39,6 +45,7 @@
                             <small class="error">Can't be empty</small>
                         }
                     }
+
                 </div>
             }
             <!-- button -->

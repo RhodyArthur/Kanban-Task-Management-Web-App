@@ -7,6 +7,7 @@ import {Store} from "@ngrx/store";
 import {boardState} from "../../../../state/board/board.entity";
 import {BoardService} from "../../../../services/board.service";
 import {Subtask} from "../../../../models/subtask";
+import {addTask, updateTask} from "../../../../state/board/board.actions";
 
 @Component({
   selector: 'app-add-edit-task',
@@ -24,6 +25,7 @@ export class AddEditTaskComponent implements  OnInit{
     currentStatuses: string[] = [];
     @Output() hideEvent = new EventEmitter<void>();
     taskForm!: FormGroup;
+    boardId!: string;
 
 
     constructor(private fb: FormBuilder,
@@ -45,6 +47,9 @@ export class AddEditTaskComponent implements  OnInit{
     ngOnInit():void {
         this.boardService.selectedBoard.getValue()?.columns.forEach(column => this.currentStatuses.push(column.name));
 
+        if (this.board) {
+            this.boardId = this.board.id
+        }
     //     if existing task, populate fields
         if(this.task) {
             this.taskForm.patchValue({
@@ -54,6 +59,7 @@ export class AddEditTaskComponent implements  OnInit{
             })
             this.setSubtasks(this.task.subtasks);
         }
+
     }
 
     // get subtasks
@@ -101,10 +107,27 @@ export class AddEditTaskComponent implements  OnInit{
                 subtasks: newSubtasks
             }
 
-        //     update task or create task
-            if (this.task) {
 
+            //     update task or create task
+            if (this.task) {
+                this.store.dispatch(updateTask({
+                    boardId: this.boardId,
+                    columnName: this.taskForm.value.status,
+                    task: newTask
+                }))
             }
+            else {
+                this.store.dispatch(addTask({
+                    boardId: this.boardId,
+                    columnName: this.taskForm.value.status,
+                    task: newTask
+                }))
+                console.log(newTask)
+            }
+
+            this.taskForm.reset();
+            this.closeForm();
+
 
         }
     }
