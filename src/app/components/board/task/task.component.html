@@ -8,5 +8,6 @@
 @if (showModal) {
     <app-task-details
     [task]="task"
+    (taskChange)="onTaskChange($event)"
     (hideEvent)="hideModal()"/>
 }

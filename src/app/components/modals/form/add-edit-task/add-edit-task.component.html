@@ -67,6 +67,7 @@
                     id="status"
                     [selectedStatus]="task?.status ?? '' "
                     [statuses]="currentStatuses"
+                    (emitChangeSelectStatus) ="taskForm.get('status')?.setValue($event)"
                 />
             </div>
         </div>
